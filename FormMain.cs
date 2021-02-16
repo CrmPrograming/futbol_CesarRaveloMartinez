@@ -14,6 +14,7 @@ namespace futbol_CesarRaveloMartinez
     {
         private GestorConexion.TABLAS tablaSeleccionada = 0;
         private DataSet dataSet = null;
+        private FormFuncionesProcedimientos formFuncionesProcedimientos = null;
 
         public FormMain()
         {
@@ -227,6 +228,15 @@ namespace futbol_CesarRaveloMartinez
             {
                 MessageBox.Show("Por favor seleccione una fila entera para poder modificar el registro.");
             }
+        }
+
+        private void btProcedimientos_Click(object sender, EventArgs e)
+        {
+            if (formFuncionesProcedimientos != null)
+                formFuncionesProcedimientos.Close();
+
+            formFuncionesProcedimientos = new FormFuncionesProcedimientos();
+            formFuncionesProcedimientos.Show();
         }
     }
 }

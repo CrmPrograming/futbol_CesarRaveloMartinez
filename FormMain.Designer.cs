@@ -37,6 +37,7 @@ namespace futbol_CesarRaveloMartinez
             this.btInsertar = new System.Windows.Forms.Button();
             this.btBorrar = new System.Windows.Forms.Button();
             this.btModificar = new System.Windows.Forms.Button();
+            this.btProcedimientos = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewContenido)).BeginInit();
             this.SuspendLayout();
             // 
@@ -119,11 +120,23 @@ namespace futbol_CesarRaveloMartinez
             this.btModificar.UseVisualStyleBackColor = true;
             this.btModificar.Click += new System.EventHandler(this.btModificar_Click);
             // 
+            // btProcedimientos
+            // 
+            this.btProcedimientos.BackColor = System.Drawing.Color.LightBlue;
+            this.btProcedimientos.Location = new System.Drawing.Point(815, 13);
+            this.btProcedimientos.Name = "btProcedimientos";
+            this.btProcedimientos.Size = new System.Drawing.Size(150, 21);
+            this.btProcedimientos.TabIndex = 8;
+            this.btProcedimientos.Text = "Funciones y Procedimientos";
+            this.btProcedimientos.UseVisualStyleBackColor = false;
+            this.btProcedimientos.Click += new System.EventHandler(this.btProcedimientos_Click);
+            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(977, 472);
+            this.Controls.Add(this.btProcedimientos);
             this.Controls.Add(this.btModificar);
             this.Controls.Add(this.btBorrar);
             this.Controls.Add(this.btInsertar);
@@ -151,6 +164,7 @@ namespace futbol_CesarRaveloMartinez
         private System.Windows.Forms.Button btInsertar;
         private System.Windows.Forms.Button btBorrar;
         private System.Windows.Forms.Button btModificar;
+        private System.Windows.Forms.Button btProcedimientos;
     }
 }
 
