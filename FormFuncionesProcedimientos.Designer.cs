@@ -56,6 +56,7 @@ namespace futbol_CesarRaveloMartinez
             this.btInsertarEquipo.TabIndex = 1;
             this.btInsertarEquipo.Text = "Insertar nuevo equipo";
             this.btInsertarEquipo.UseVisualStyleBackColor = true;
+            this.btInsertarEquipo.Click += new System.EventHandler(this.btInsertarEquipo_Click);
             this.btInsertarEquipo.MouseEnter += new System.EventHandler(this.btInsertarEquipo_MouseEnter);
             this.btInsertarEquipo.MouseLeave += new System.EventHandler(this.btInsertarEquipo_MouseLeave);
             // 

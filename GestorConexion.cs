@@ -105,5 +105,77 @@ namespace futbol_CesarRaveloMartinez
             sqlConnection.Close();
         }
 
+        public static Dictionary<string, string> obtenerListadoLigas()
+        {
+            Dictionary<string, string> listado = new Dictionary<string, string>();
+            SqlConnection sqlConnection;
+            SqlCommand sqlCommand;
+            SqlDataReader sqlDataReader;
+            DataTable dataTable = new DataTable();
+
+            sqlConnection = abrirConexion();
+            sqlCommand = new SqlCommand("SELECT * FROM ligas", sqlConnection);
+            sqlDataReader = sqlCommand.ExecuteReader();
+
+            dataTable.Load(sqlDataReader);
+
+            foreach (DataRow row in dataTable.Rows)
+            {
+                listado.Add(row[1].ToString(), row[0].ToString());
+            }
+
+            sqlConnection.Close();
+            return listado;
+        }
+
+        public static Tuple<bool, bool> insertarEquipo(string codLiga, string nomEquipo, string localidad, bool internacional)
+        {
+            Tuple<bool, bool> result;
+            SqlConnection sqlConnection;
+            SqlCommand sqlCommand;
+            SqlParameter paramNombre, paramLiga, paramLocalidad, paramInternacional;
+            SqlParameter paramEstadoLiga, paramEstadoInsercion;
+
+            sqlConnection = abrirConexion();
+            sqlCommand = new SqlCommand("insertarEquipo", sqlConnection);
+
+            paramNombre = new SqlParameter("@nombre", SqlDbType.VarChar);
+            paramNombre.Direction = ParameterDirection.Input;
+            paramNombre.Value = nomEquipo;
+            sqlCommand.Parameters.Add(paramNombre);
+
+            paramLiga = new SqlParameter("@liga", SqlDbType.Char);
+            paramLiga.Direction = ParameterDirection.Input;
+            paramLiga.Value = codLiga;
+            sqlCommand.Parameters.Add(paramLiga);
+
+            paramLocalidad = new SqlParameter("@localidad", SqlDbType.VarChar);
+            paramLocalidad.Direction = ParameterDirection.Input;
+            paramLocalidad.Value = localidad;
+            sqlCommand.Parameters.Add(paramLocalidad);
+
+            paramInternacional = new SqlParameter("@internacional", SqlDbType.Bit);
+            paramInternacional.Direction = ParameterDirection.Input;
+            paramInternacional.Value = internacional;
+            sqlCommand.Parameters.Add(paramInternacional);
+
+            paramEstadoLiga = new SqlParameter("@estadoLiga", SqlDbType.Bit);
+            paramEstadoLiga.Direction = ParameterDirection.Output;
+            sqlCommand.Parameters.Add(paramEstadoLiga);
+
+            paramEstadoInsercion = new SqlParameter("@estadoInsercion", SqlDbType.Bit);
+            paramEstadoInsercion.Direction = ParameterDirection.Output;
+            sqlCommand.Parameters.Add(paramEstadoInsercion);
+
+            sqlCommand.CommandType = CommandType.StoredProcedure;
+            sqlCommand.ExecuteNonQuery();
+
+            result = Tuple.Create((bool)sqlCommand.Parameters["@estadoLiga"].Value, (bool)sqlCommand.Parameters["@estadoInsercion"].Value);
+
+            sqlConnection.Close();
+
+            return result;
+        }
+
     }
 }

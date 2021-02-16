@@ -75,5 +75,10 @@ namespace futbol_CesarRaveloMartinez
         {
             new FormListarContratos().ShowDialog();
         }
+
+        private void btInsertarEquipo_Click(object sender, EventArgs e)
+        {
+            new FormProcedimientoInsertarEquipo().ShowDialog();
+        }
     }
 }
