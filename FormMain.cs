@@ -213,7 +213,7 @@ namespace futbol_CesarRaveloMartinez
                         new FormModificarLigas(dataSet, dataGridViewContenido.SelectedRows[0], this).ShowDialog();
                         break;
                     case GestorConexion.TABLAS.EQUIPOS:
-                        new FormBorrarEquipos(dataSet, dataGridViewContenido.SelectedRows[0], this).ShowDialog();
+                        new FormModificarEquipos(dataSet, dataGridViewContenido.SelectedRows[0], this).ShowDialog();
                         break;
                     case GestorConexion.TABLAS.FUTBOLISTAS:
                         new FormModificarFutbolistas(dataSet, dataGridViewContenido.SelectedRows[0], this).ShowDialog();
