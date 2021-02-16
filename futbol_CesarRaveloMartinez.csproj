@@ -100,6 +100,18 @@
     <Compile Include="FormMain.Designer.cs">
       <DependentUpon>FormMain.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormModificarFutbolistas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormModificarFutbolistas.Designer.cs">
+      <DependentUpon>FormModificarFutbolistas.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormModificarLigas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormModificarLigas.Designer.cs">
+      <DependentUpon>FormModificarLigas.cs</DependentUpon>
+    </Compile>
     <Compile Include="GestorConexion.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -129,6 +141,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormMain.resx">
       <DependentUpon>FormMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormModificarFutbolistas.resx">
+      <DependentUpon>FormModificarFutbolistas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormModificarLigas.resx">
+      <DependentUpon>FormModificarLigas.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

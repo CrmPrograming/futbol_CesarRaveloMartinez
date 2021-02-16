@@ -36,6 +36,7 @@ namespace futbol_CesarRaveloMartinez
             this.btActualizar = new System.Windows.Forms.Button();
             this.btInsertar = new System.Windows.Forms.Button();
             this.btBorrar = new System.Windows.Forms.Button();
+            this.btModificar = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewContenido)).BeginInit();
             this.SuspendLayout();
             // 
@@ -108,11 +109,22 @@ namespace futbol_CesarRaveloMartinez
             this.btBorrar.UseVisualStyleBackColor = true;
             this.btBorrar.Click += new System.EventHandler(this.btBorrar_Click);
             // 
+            // btModificar
+            // 
+            this.btModificar.Location = new System.Drawing.Point(478, 13);
+            this.btModificar.Name = "btModificar";
+            this.btModificar.Size = new System.Drawing.Size(92, 21);
+            this.btModificar.TabIndex = 7;
+            this.btModificar.Text = "Modificar Registro";
+            this.btModificar.UseVisualStyleBackColor = true;
+            this.btModificar.Click += new System.EventHandler(this.btModificar_Click);
+            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(977, 472);
+            this.Controls.Add(this.btModificar);
             this.Controls.Add(this.btBorrar);
             this.Controls.Add(this.btInsertar);
             this.Controls.Add(this.btActualizar);
@@ -138,6 +150,7 @@ namespace futbol_CesarRaveloMartinez
         private System.Windows.Forms.Button btActualizar;
         private System.Windows.Forms.Button btInsertar;
         private System.Windows.Forms.Button btBorrar;
+        private System.Windows.Forms.Button btModificar;
     }
 }
 

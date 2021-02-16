@@ -202,5 +202,31 @@ namespace futbol_CesarRaveloMartinez
                 MessageBox.Show("Por favor seleccione una fila entera para poder borrar el registro.");
             }
         }
+
+        private void btModificar_Click(object sender, EventArgs e)
+        {
+            if (dataGridViewContenido.SelectedRows.Count == 1 && dataGridViewContenido.SelectedRows[0].Index != dataGridViewContenido.NewRowIndex)
+            {
+                switch (tablaSeleccionada)
+                {
+                    case GestorConexion.TABLAS.LIGAS:
+                        new FormModificarLigas(dataSet, dataGridViewContenido.SelectedRows[0], this).ShowDialog();
+                        break;
+                    case GestorConexion.TABLAS.EQUIPOS:
+                        new FormBorrarEquipos(dataSet, dataGridViewContenido.SelectedRows[0], this).ShowDialog();
+                        break;
+                    case GestorConexion.TABLAS.FUTBOLISTAS:
+                        new FormModificarFutbolistas(dataSet, dataGridViewContenido.SelectedRows[0], this).ShowDialog();
+                        break;
+                    case GestorConexion.TABLAS.CONTRATOS:
+                        new FormBorrarContratos(dataSet, dataGridViewContenido.SelectedRows[0], this).ShowDialog();
+                        break;
+                }
+            }
+            else
+            {
+                MessageBox.Show("Por favor seleccione una fila entera para poder modificar el registro.");
+            }
+        }
     }
 }
