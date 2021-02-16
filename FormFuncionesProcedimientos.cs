@@ -70,5 +70,10 @@ namespace futbol_CesarRaveloMartinez
         {
             cambiarMensajeDescripcion("Dado el DNI o NIE de un futbolista, obtener el número total de meses que ha estado en activo.");
         }
+
+        private void btListarContratos_Click(object sender, EventArgs e)
+        {
+            new FormListarContratos().ShowDialog();
+        }
     }
 }

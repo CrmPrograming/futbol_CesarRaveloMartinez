@@ -44,6 +44,7 @@ namespace futbol_CesarRaveloMartinez
             this.btListarContratos.TabIndex = 0;
             this.btListarContratos.Text = "Listar contratos de futbolista";
             this.btListarContratos.UseVisualStyleBackColor = true;
+            this.btListarContratos.Click += new System.EventHandler(this.btListarContratos_Click);
             this.btListarContratos.MouseEnter += new System.EventHandler(this.btListarContratos_MouseEnter);
             this.btListarContratos.MouseLeave += new System.EventHandler(this.btListarContratos_MouseLeave);
             // 

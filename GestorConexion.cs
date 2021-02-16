@@ -82,5 +82,28 @@ namespace futbol_CesarRaveloMartinez
             return result;
         }
 
+        public static void obtenerListadoContratos(DataGridView dataGridView, string dnionie)
+        {
+            SqlConnection sqlConnection;
+            SqlCommand sqlCommand;
+            SqlParameter sqlParameter;
+            SqlDataReader sqlDataReader;
+            DataTable dataTable = new DataTable();
+
+            sqlConnection = abrirConexion();
+            sqlCommand = new SqlCommand("listarContratoFutbolista", sqlConnection);
+            sqlParameter = new SqlParameter("@coddnionie", SqlDbType.Char);
+            sqlCommand.CommandType = CommandType.StoredProcedure;
+            sqlParameter.Direction = ParameterDirection.Input;
+            sqlParameter.Value = dnionie;
+            sqlCommand.Parameters.Add(sqlParameter);
+
+            sqlDataReader = sqlCommand.ExecuteReader();
+
+            dataTable.Load(sqlDataReader);
+            dataGridView.DataSource = dataTable;
+            sqlConnection.Close();
+        }
+
     }
 }

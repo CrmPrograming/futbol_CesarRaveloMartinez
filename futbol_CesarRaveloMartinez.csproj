@@ -100,6 +100,12 @@
     <Compile Include="FormInsertarLigas.Designer.cs">
       <DependentUpon>FormInsertarLigas.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormListarContratos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormListarContratos.Designer.cs">
+      <DependentUpon>FormListarContratos.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormMain.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -159,6 +165,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormInsertarLigas.resx">
       <DependentUpon>FormInsertarLigas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormListarContratos.resx">
+      <DependentUpon>FormListarContratos.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormMain.resx">
       <DependentUpon>FormMain.cs</DependentUpon>
