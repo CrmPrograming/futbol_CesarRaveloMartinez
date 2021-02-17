@@ -50,6 +50,11 @@ namespace futbol_CesarRaveloMartinez
                     query = "SELECT * FROM equipos; SELECT * FROM ligas";
                     sqlDataAdapter = new SqlDataAdapter(query, conexion);
                     sqlDataAdapter.Fill(dataSet);
+                    // Relaciones
+                    DataColumn parentCodLiga = dataSet.Tables[0].Columns["codLiga"];
+                    DataColumn childCodLiga = dataSet.Tables[1].Columns["codLiga"];
+                    DataRelation relEquipoLiga = new DataRelation("EquipoLiga", parentCodLiga, childCodLiga);
+                    dataSet.Relations.Add(relEquipoLiga);
                     break;
                 case TABLAS.FUTBOLISTAS:
                     query = "SELECT * FROM fubtbolistas";
@@ -60,6 +65,15 @@ namespace futbol_CesarRaveloMartinez
                     query = "SELECT * FROM contratos; SELECT * FROM equipos; SELECT * FROM fubtbolistas";
                     sqlDataAdapter = new SqlDataAdapter(query, conexion);
                     sqlDataAdapter.Fill(dataSet);
+                    // Relaciones
+                    DataColumn parentCodDNINIE = dataSet.Tables[0].Columns["coddnionie"];
+                    DataColumn childCodDNINIE = dataSet.Tables[1].Columns["coddnionie"];
+                    DataRelation relContratoFutbolista = new DataRelation("ContratoFutbolista", parentCodDNINIE, childCodDNINIE);
+                    dataSet.Relations.Add(relContratoFutbolista);
+                    DataColumn parentCodEquipo = dataSet.Tables[0].Columns["codEquipo"];
+                    DataColumn childCodEquipo = dataSet.Tables[1].Columns["codEquipo"];
+                    DataRelation relContratoEquipo = new DataRelation("ContratoEquipo", parentCodEquipo, childCodEquipo);
+                    dataSet.Relations.Add(relContratoEquipo);
                     break;
             }
 
