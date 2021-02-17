@@ -68,6 +68,7 @@ namespace futbol_CesarRaveloMartinez
             this.btFutbolistasActivos.TabIndex = 2;
             this.btFutbolistasActivos.Text = "Futbolistas en activo";
             this.btFutbolistasActivos.UseVisualStyleBackColor = true;
+            this.btFutbolistasActivos.Click += new System.EventHandler(this.btFutbolistasActivos_Click);
             this.btFutbolistasActivos.MouseEnter += new System.EventHandler(this.btFutbolistasActivos_MouseEnter);
             this.btFutbolistasActivos.MouseLeave += new System.EventHandler(this.btFutbolistasActivos_MouseLeave);
             // 

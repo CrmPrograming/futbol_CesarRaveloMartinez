@@ -76,6 +76,12 @@
     <Compile Include="FormFuncionesProcedimientos.Designer.cs">
       <DependentUpon>FormFuncionesProcedimientos.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormFutbolistasActivos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormFutbolistasActivos.Designer.cs">
+      <DependentUpon>FormFutbolistasActivos.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormInsertarContrato.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -159,6 +165,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormFuncionesProcedimientos.resx">
       <DependentUpon>FormFuncionesProcedimientos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormFutbolistasActivos.resx">
+      <DependentUpon>FormFutbolistasActivos.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormInsertarContrato.resx">
       <DependentUpon>FormInsertarContrato.cs</DependentUpon>

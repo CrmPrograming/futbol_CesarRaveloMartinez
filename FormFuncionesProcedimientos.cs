@@ -80,5 +80,10 @@ namespace futbol_CesarRaveloMartinez
         {
             new FormProcedimientoInsertarEquipo().ShowDialog();
         }
+
+        private void btFutbolistasActivos_Click(object sender, EventArgs e)
+        {
+            new FormFutbolistasActivos().ShowDialog();
+        }
     }
 }
