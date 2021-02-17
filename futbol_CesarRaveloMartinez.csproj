@@ -148,6 +148,12 @@
     <Compile Include="FormProcedimientoInsertarEquipo.Designer.cs">
       <DependentUpon>FormProcedimientoInsertarEquipo.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormTotalMeses.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormTotalMeses.Designer.cs">
+      <DependentUpon>FormTotalMeses.cs</DependentUpon>
+    </Compile>
     <Compile Include="GestorConexion.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -201,6 +207,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormProcedimientoInsertarEquipo.resx">
       <DependentUpon>FormProcedimientoInsertarEquipo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormTotalMeses.resx">
+      <DependentUpon>FormTotalMeses.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

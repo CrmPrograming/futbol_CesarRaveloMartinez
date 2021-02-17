@@ -229,5 +229,39 @@ namespace futbol_CesarRaveloMartinez
             return result;
         }
 
+        public static int obtenerTotalMeses(string dnionie)
+        {
+            int result;
+            object respuestaEscalar;
+            SqlConnection sqlConnection;
+            SqlCommand sqlCommand;
+            SqlParameter inDNI;
+
+            sqlConnection = abrirConexion();
+            sqlCommand = new SqlCommand("SELECT dbo.fnTotalMeses(@dni)", sqlConnection);
+
+            // Parámetros de entrada
+
+            inDNI = new SqlParameter("@dni", SqlDbType.Char);
+            inDNI.Direction = ParameterDirection.Input;
+            inDNI.Value = dnionie;
+            sqlCommand.Parameters.Add(inDNI);
+
+            respuestaEscalar = sqlCommand.ExecuteScalar();
+
+            sqlConnection.Close();
+
+            if (respuestaEscalar is DBNull)
+            {
+                result = 0;
+            }
+            else
+            { 
+                result = (int)respuestaEscalar;
+            }
+
+            return result;
+        }
+
     }
 }

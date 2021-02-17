@@ -80,6 +80,7 @@ namespace futbol_CesarRaveloMartinez
             this.btMesesActivo.TabIndex = 3;
             this.btMesesActivo.Text = "Meses en activo de futbolista";
             this.btMesesActivo.UseVisualStyleBackColor = true;
+            this.btMesesActivo.Click += new System.EventHandler(this.btMesesActivo_Click);
             this.btMesesActivo.MouseEnter += new System.EventHandler(this.btMesesActivo_MouseEnter);
             this.btMesesActivo.MouseLeave += new System.EventHandler(this.btMesesActivo_MouseLeave);
             // 

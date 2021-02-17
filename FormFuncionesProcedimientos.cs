@@ -85,5 +85,10 @@ namespace futbol_CesarRaveloMartinez
         {
             new FormFutbolistasActivos().ShowDialog();
         }
+
+        private void btMesesActivo_Click(object sender, EventArgs e)
+        {
+            new FormTotalMeses().ShowDialog();
+        }
     }
 }
