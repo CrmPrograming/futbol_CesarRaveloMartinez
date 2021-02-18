@@ -51,6 +51,7 @@ namespace futbol_CesarRaveloMartinez
             this.dataGridViewContenido.Name = "dataGridViewContenido";
             this.dataGridViewContenido.Size = new System.Drawing.Size(953, 399);
             this.dataGridViewContenido.TabIndex = 0;
+            this.dataGridViewContenido.RowStateChanged += new System.Windows.Forms.DataGridViewRowStateChangedEventHandler(this.dataGridViewContenido_RowStateChanged);
             // 
             // cbTabla
             // 
@@ -115,7 +116,7 @@ namespace futbol_CesarRaveloMartinez
             // 
             this.btModificar.Location = new System.Drawing.Point(478, 13);
             this.btModificar.Name = "btModificar";
-            this.btModificar.Size = new System.Drawing.Size(92, 21);
+            this.btModificar.Size = new System.Drawing.Size(109, 21);
             this.btModificar.TabIndex = 7;
             this.btModificar.Text = "Modificar Registro";
             this.btModificar.UseVisualStyleBackColor = true;
@@ -134,7 +135,7 @@ namespace futbol_CesarRaveloMartinez
             // 
             // btEquiposLiga
             // 
-            this.btEquiposLiga.Location = new System.Drawing.Point(576, 13);
+            this.btEquiposLiga.Location = new System.Drawing.Point(593, 13);
             this.btEquiposLiga.Name = "btEquiposLiga";
             this.btEquiposLiga.Size = new System.Drawing.Size(107, 21);
             this.btEquiposLiga.TabIndex = 9;
@@ -146,7 +147,7 @@ namespace futbol_CesarRaveloMartinez
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(977, 472);
+            this.ClientSize = new System.Drawing.Size(983, 472);
             this.Controls.Add(this.btEquiposLiga);
             this.Controls.Add(this.btProcedimientos);
             this.Controls.Add(this.btModificar);

@@ -42,21 +42,20 @@ namespace futbol_CesarRaveloMartinez
             switch (tabla)
             {
                 case TABLAS.LIGAS:
-                    query = "SELECT * FROM ligas";
+                    query = "SELECT codLiga, nomLiga FROM ligas; SELECT codEquipo, nomEquipo, codLiga, localidad, internacional FROM equipos;";
                     sqlDataAdapter = new SqlDataAdapter(query, conexion);
                     sqlDataAdapter.Fill(dataSet, "ligas");
-                    break;
-                case TABLAS.EQUIPOS:
-                    query = "SELECT * FROM equipos; SELECT * FROM ligas";
-                    sqlDataAdapter = new SqlDataAdapter(query, conexion);
-                    sqlDataAdapter.Fill(dataSet);
-                    /*
+
                     // Relaciones
                     DataColumn parentCodLiga = dataSet.Tables[0].Columns["codLiga"];
                     DataColumn childCodLiga = dataSet.Tables[1].Columns["codLiga"];
                     DataRelation relEquipoLiga = new DataRelation("EquipoLiga", parentCodLiga, childCodLiga);
                     dataSet.Relations.Add(relEquipoLiga);
-                    */
+                    break;
+                case TABLAS.EQUIPOS:
+                    query = "SELECT codEquipo, nomEquipo, codLiga, localidad, internacional FROM equipos; SELECT codLiga, nomLiga FROM ligas";
+                    sqlDataAdapter = new SqlDataAdapter(query, conexion);
+                    sqlDataAdapter.Fill(dataSet);                    
                     break;
                 case TABLAS.FUTBOLISTAS:
                     query = "SELECT * FROM fubtbolistas";

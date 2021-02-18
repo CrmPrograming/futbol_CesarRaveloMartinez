@@ -15,6 +15,7 @@ namespace futbol_CesarRaveloMartinez
         private GestorConexion.TABLAS tablaSeleccionada = 0;
         private DataSet dataSet = null;
         private FormFuncionesProcedimientos formFuncionesProcedimientos = null;
+        private FormRelaciones formRelaciones = null;
 
         public FormMain()
         {
@@ -242,6 +243,34 @@ namespace futbol_CesarRaveloMartinez
         private void btEquiposLiga_Click(object sender, EventArgs e)
         {
             new FormEquiposDeLiga().ShowDialog();
+        }
+
+        private void dataGridViewContenido_RowStateChanged(object sender, DataGridViewRowStateChangedEventArgs e)
+        {
+            // Comprobamos que se dispare el evento de la nueva fila seleccionada sólo cuando:
+            // - Hay una única fila seleccionada
+            // - La fila seleccionada no es la de inserción de nuevos datos (NewRowIndex)
+            if (dataGridViewContenido.SelectedRows.Count != 1 || dataGridViewContenido.SelectedRows[0].Index == dataGridViewContenido.NewRowIndex) return;
+
+            if (tablaSeleccionada == GestorConexion.TABLAS.LIGAS)
+            {
+                if (formRelaciones == null || !formRelaciones.Visible)
+                {
+                    formRelaciones = new FormRelaciones();
+                    formRelaciones.Show();
+                }
+
+                DataView tableView = new DataView();
+                DataRowView currentRowView;
+
+                tableView = new DataView(dataSet.Tables[0]);
+                currentRowView = tableView[dataGridViewContenido.SelectedRows[0].Index];
+                formRelaciones.actualizarDataGrid(
+                    dataGridViewContenido.SelectedRows[0].Cells[0].Value.ToString(),
+                    dataGridViewContenido.SelectedRows[0].Cells[1].Value.ToString(),
+                    currentRowView.CreateChildView("EquipoLiga")
+                );
+            }
         }
     }
 }
