@@ -238,5 +238,10 @@ namespace futbol_CesarRaveloMartinez
             formFuncionesProcedimientos = new FormFuncionesProcedimientos();
             formFuncionesProcedimientos.Show();
         }
+
+        private void btEquiposLiga_Click(object sender, EventArgs e)
+        {
+            new FormEquiposDeLiga().ShowDialog();
+        }
     }
 }

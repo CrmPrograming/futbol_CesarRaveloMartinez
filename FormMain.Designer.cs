@@ -38,6 +38,7 @@ namespace futbol_CesarRaveloMartinez
             this.btBorrar = new System.Windows.Forms.Button();
             this.btModificar = new System.Windows.Forms.Button();
             this.btProcedimientos = new System.Windows.Forms.Button();
+            this.btEquiposLiga = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewContenido)).BeginInit();
             this.SuspendLayout();
             // 
@@ -131,11 +132,22 @@ namespace futbol_CesarRaveloMartinez
             this.btProcedimientos.UseVisualStyleBackColor = false;
             this.btProcedimientos.Click += new System.EventHandler(this.btProcedimientos_Click);
             // 
+            // btEquiposLiga
+            // 
+            this.btEquiposLiga.Location = new System.Drawing.Point(576, 13);
+            this.btEquiposLiga.Name = "btEquiposLiga";
+            this.btEquiposLiga.Size = new System.Drawing.Size(107, 21);
+            this.btEquiposLiga.TabIndex = 9;
+            this.btEquiposLiga.Text = "Ver equipos de liga";
+            this.btEquiposLiga.UseVisualStyleBackColor = true;
+            this.btEquiposLiga.Click += new System.EventHandler(this.btEquiposLiga_Click);
+            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(977, 472);
+            this.Controls.Add(this.btEquiposLiga);
             this.Controls.Add(this.btProcedimientos);
             this.Controls.Add(this.btModificar);
             this.Controls.Add(this.btBorrar);
@@ -165,6 +177,7 @@ namespace futbol_CesarRaveloMartinez
         private System.Windows.Forms.Button btBorrar;
         private System.Windows.Forms.Button btModificar;
         private System.Windows.Forms.Button btProcedimientos;
+        private System.Windows.Forms.Button btEquiposLiga;
     }
 }
 
