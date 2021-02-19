@@ -10,6 +10,12 @@ using System.Windows.Forms;
 
 namespace futbol_CesarRaveloMartinez
 {
+    /*
+     * Clase gestora de mostrar un combobox
+     * de ligas el cual al cambiar de item,
+     * actualiza el datagrid para mostrar
+     * los equipos pertenecientes a dicha liga.
+    */
     public partial class FormEquiposDeLiga : Form
     {
 
@@ -28,6 +34,7 @@ namespace futbol_CesarRaveloMartinez
 
             cbLiga.SelectedIndex = 0;
 
+            // Inicializamos el datagrid con los equipos propios de la primera liga
             dataGridViewContenido.DataSource = GestorConexion.obtenerEquipos((string)cbLiga.SelectedValue);
             dataGridViewContenido.Columns[0].HeaderText = "Código de Equipo";
             dataGridViewContenido.Columns[0].ReadOnly = true;
@@ -39,6 +46,7 @@ namespace futbol_CesarRaveloMartinez
 
         private void cbLiga_SelectedIndexChanged(object sender, EventArgs e)
         {
+            // Buscamos los equipos asociados a la liga actualmente seleccionada
             dataGridViewContenido.DataSource = GestorConexion.obtenerEquipos((string)cbLiga.SelectedValue);
         }
     }

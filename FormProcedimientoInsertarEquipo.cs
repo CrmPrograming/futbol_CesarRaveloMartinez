@@ -10,6 +10,13 @@ using System.Windows.Forms;
 
 namespace futbol_CesarRaveloMartinez
 {
+    /*
+     * Clase gestora del procedimiento almacenado de
+     * "insertarEquipo". Se encarga de toda la operativa
+     * respecto a la petición de datos y hacerle la
+     * petición a la clase GestorConexion.
+     * 
+    */
     public partial class FormProcedimientoInsertarEquipo : Form
     {
         public FormProcedimientoInsertarEquipo()
@@ -31,6 +38,7 @@ namespace futbol_CesarRaveloMartinez
 
         private void btCrear_Click(object sender, EventArgs e)
         {
+            // Comprobamos que se ha seleccionado una liga
             if (cbLiga.SelectedIndex > -1)
             {
                 string codLiga = cbLiga.SelectedValue.ToString();

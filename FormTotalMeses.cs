@@ -10,6 +10,13 @@ using System.Windows.Forms;
 
 namespace futbol_CesarRaveloMartinez
 {
+    /*
+     * Clase gestora del procedimiento almacenado de
+     * "fnTotalMeses". Se encarga de toda la operativa
+     * respecto a la petición de datos y hacerle la
+     * petición a la clase GestorConexion.
+     * 
+    */
     public partial class FormTotalMeses : Form
     {
         public FormTotalMeses()

@@ -10,6 +10,11 @@ using System.Windows.Forms;
 
 namespace futbol_CesarRaveloMartinez
 {
+    /*
+     * Clase gestora de la operación de insertar
+     * los equipos mediante formulario.
+     * 
+    */
     public partial class FormInsertarEquipo : Form
     {
         private DataSet dataSet;
@@ -17,6 +22,10 @@ namespace futbol_CesarRaveloMartinez
 
         public FormInsertarEquipo(DataSet dataSet, FormMain formMain)
         {
+            // El dataset pasado por parámetro debe tener la siguiente estructura:
+            // [0] -> datos de equipos existentes
+            // [1] -> datos de ligas existentes
+
             this.dataSet = dataSet;
             this.formMain = formMain;
             InitializeComponent();
@@ -26,6 +35,7 @@ namespace futbol_CesarRaveloMartinez
         {
             Dictionary<string, string> ligaDictionary = new Dictionary<string, string>();
 
+            // Inicializamos el combobox para las ligas
             foreach (DataRow row in dataSet.Tables[1].Rows)
             {
                 ligaDictionary.Add(row[1].ToString(), row[0].ToString());

@@ -10,6 +10,11 @@ using System.Windows.Forms;
 
 namespace futbol_CesarRaveloMartinez
 {
+    /*
+     * Clase gestora de la operación de modificar
+     * los equipos mediante formulario.
+     * 
+    */
     public partial class FormModificarEquipos : Form
     {
         private DataSet dataSet;
@@ -31,9 +36,12 @@ namespace futbol_CesarRaveloMartinez
             int pos = -1;
             string codLiga = this.row.Cells[2].Value.ToString();
 
+            // Creamos y rellenamos el ComboBox de ligas
             foreach (DataRow row in dataSet.Tables[1].Rows)
             {
                 ligaDictionary.Add(row[1].ToString(), row[0].ToString());
+                // Con este if marcaremos luego la posición del
+                // ComboBox en el item que coincida con el código de liga dado
                 if (row[0].ToString().Equals(codLiga))
                 {
                     pos = i;
@@ -70,7 +78,10 @@ namespace futbol_CesarRaveloMartinez
                 bool internacional = checkBInternacional.Checked;
 
                 if (validarNomEquipo(nomEquipo) && validarLocalidad(localidad))
-                {                    
+                {
+                    // Actualizamos los nuevos valores del equipo en la fila
+                    // correspondiente del DataSet; row.Index es el índice
+                    // de la fila seleccionada a modificar.
                     dataSet.Tables[0].Rows[row.Index][1] = nomEquipo;
                     dataSet.Tables[0].Rows[row.Index][2] = codLiga;
                     dataSet.Tables[0].Rows[row.Index][3] = localidad;

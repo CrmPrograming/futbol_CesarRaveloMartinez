@@ -10,6 +10,12 @@ using System.Windows.Forms;
 
 namespace futbol_CesarRaveloMartinez
 {
+    /*
+     * Clase gestora de la operación de borrado
+     * mediante formulario para la tabla de
+     * futbolistas.
+     * 
+    */
     public partial class FormBorrarFutbolistas : Form
     {
         private DataSet dataSet;
@@ -38,6 +44,7 @@ namespace futbol_CesarRaveloMartinez
 
         private void btBorrar_Click(object sender, EventArgs e)
         {
+            // Borramos del dataset la fila seleccionada actualmente
             dataSet.Tables[0].Rows[row.Index].Delete();
             formMain.actualizarRegistros();
             this.Close();

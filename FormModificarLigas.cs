@@ -10,6 +10,11 @@ using System.Windows.Forms;
 
 namespace futbol_CesarRaveloMartinez
 {
+    /*
+     * Clase gestora de la operación de modificar
+     * las ligas mediante formulario.
+     * 
+    */
     public partial class FormModificarLigas : Form
     {
         private DataSet dataSet;
@@ -40,6 +45,9 @@ namespace futbol_CesarRaveloMartinez
             string nomLiga = tbNomLiga.Text;
             if (validarNomLiga(nomLiga))
             {
+                // Actualizamos los nuevos valores de la liga en la fila
+                // correspondiente del DataSet; row.Index es el índice
+                // de la fila seleccionada a modificar.
                 dataSet.Tables[0].Rows[row.Index][1] = nomLiga;
                 formMain.actualizarRegistros();
                 this.Close();

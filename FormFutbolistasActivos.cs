@@ -10,6 +10,13 @@ using System.Windows.Forms;
 
 namespace futbol_CesarRaveloMartinez
 {
+    /*
+     * Clase gestora del procedimiento almacenado de
+     * "futbolistasActivos". Se encarga de toda la operativa
+     * respecto a la petición de datos y hacerle la
+     * petición a la clase GestorConexion.
+     * 
+    */
     public partial class FormFutbolistasActivos : Form
     {
         public FormFutbolistasActivos()

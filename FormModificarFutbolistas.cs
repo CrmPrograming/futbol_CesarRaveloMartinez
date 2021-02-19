@@ -10,6 +10,11 @@ using System.Windows.Forms;
 
 namespace futbol_CesarRaveloMartinez
 {
+    /*
+     * Clase gestora de la operación de modificar
+     * los futbolistas mediante formulario.
+     * 
+    */
     public partial class FormModificarFutbolistas : Form
     {
         private DataSet dataSet;
@@ -43,6 +48,9 @@ namespace futbol_CesarRaveloMartinez
 
             if (validarNombre(nombre) && validarNacionalidad(nacionalidad))
             {
+                // Actualizamos los nuevos valores del futbolista en la fila
+                // correspondiente del DataSet; row.Index es el índice
+                // de la fila seleccionada a modificar.
                 dataSet.Tables[0].Rows[row.Index][1] = nombre;
                 dataSet.Tables[0].Rows[row.Index][2] = nacionalidad;
                 formMain.actualizarRegistros();

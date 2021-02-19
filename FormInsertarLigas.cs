@@ -10,6 +10,11 @@ using System.Windows.Forms;
 
 namespace futbol_CesarRaveloMartinez
 {
+    /*
+     * Clase gestora de la operación de insertar
+     * las ligas mediante formulario.
+     * 
+    */
     public partial class FormInsertarLigas : Form
     {
 
@@ -33,6 +38,7 @@ namespace futbol_CesarRaveloMartinez
             string codLiga = tbCodLiga.Text;
             string nomLiga = tbNomLiga.Text;
 
+            // Validamos todos los campos introducidos por el usuario
             if (validarCodLiga(codLiga) && validarNomLiga(nomLiga))
             {
                 dataSet.Tables[0].Rows.Add(codLiga, nomLiga);

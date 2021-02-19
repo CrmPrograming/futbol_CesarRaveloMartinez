@@ -9,6 +9,10 @@ using System.Windows.Forms;
 
 namespace futbol_CesarRaveloMartinez
 {
+    /* 
+     * Clase encargada de todas las operaciones
+     * relacionadas con la base de datos.
+    */
     public abstract class GestorConexion
     {
         private static string SERVIDOR = @"CSAR-TORRE\SQLEXPRESS";
@@ -23,6 +27,12 @@ namespace futbol_CesarRaveloMartinez
             CONTRATOS
         }
 
+        /* 
+         * Método encargado de establecer una conexión con la base de datos.
+         * La conexión la devuelve abierta, le corresponde al método invocador
+         * cerrar dicha conexión.
+         *
+        */
         private static SqlConnection abrirConexion()
         {
             string connectionString = "Data Source=" + SERVIDOR + "; Initial Catalog =" + BD + "; Integrated Security = true";
@@ -32,6 +42,10 @@ namespace futbol_CesarRaveloMartinez
             return sqlConnection;
         }
 
+        /* 
+         * Método encargado de generar un dataset con los datos
+         * correspondientes de la tabla indicada por parámetro.
+        */
         public static DataSet poblarDataSet(TABLAS tabla)
         {
             SqlConnection conexion = abrirConexion();
@@ -73,6 +87,17 @@ namespace futbol_CesarRaveloMartinez
             return dataSet;
         }
 
+        /*
+         * Método encargado de actualizar una tabla en base
+         * al dataset pasado por parámetro y el dataAdapter actual.
+         * 
+         * Se encarga de todas las operaciones básicas (insertar, borrar y modificar).
+         * 
+         * En caso de no poder realizar la operación, mostrará una ventana de aviso indicando
+         * el error. Las operaciones denegadas por triggers, mostrarán en dicha ventana el mensaje
+         * propio del trigger.
+         * 
+        */
         public static bool actualizarTabla(DataSet dataSet)
         {
             bool result = false;
@@ -88,6 +113,10 @@ namespace futbol_CesarRaveloMartinez
             return result;
         }
 
+        /*
+         * Método encargado de obtener un DataTable específico de equipos
+         * según la liga indicada por parámetro.
+        */
         public static DataTable obtenerEquipos(string codLiga)
         {
             DataTable result = new DataTable();
@@ -105,6 +134,12 @@ namespace futbol_CesarRaveloMartinez
             return result;
         }
 
+        /*
+         * Método encargado de inyectar en el DataGridView indicado, los resultados de invocar
+         * el procedimiento almacenado "listarContratoFutbolista" para el DNI o NIE especificado
+         * por parámetro.
+         * 
+        */
         public static void obtenerListadoContratos(DataGridView dataGridView, string dnionie)
         {
             SqlConnection sqlConnection;
@@ -128,6 +163,11 @@ namespace futbol_CesarRaveloMartinez
             sqlConnection.Close();
         }
 
+        /*
+         * Método encargado de generar un listado de todas las ligas
+         * existentes junto con su código de liga, formando un diccionario
+         * con toda la estructura.
+        */
         public static Dictionary<string, string> obtenerListadoLigas()
         {
             Dictionary<string, string> listado = new Dictionary<string, string>();
@@ -151,6 +191,14 @@ namespace futbol_CesarRaveloMartinez
             return listado;
         }
 
+        /*
+         * Método encargado de insertar un equipo mediante el procedimiento
+         * almacenado "insertarEquipo" según los datos especificados por parámetro.
+         * 
+         * Los valores retornados por el procedimiento se retornan en una tupla 
+         * siendo el Item1 el primer parámetro y el Item2 el segundo parámetro.
+         * 
+        */
         public static Tuple<bool, bool> insertarEquipo(string codLiga, string nomEquipo, string localidad, bool internacional)
         {
             Tuple<bool, bool> result;
@@ -204,6 +252,14 @@ namespace futbol_CesarRaveloMartinez
             return result;
         }
 
+        /*
+         * Método encargado de ejecutar el procedimiento almacenado
+         * "futbolistasActivos" según los parámetros indicados del
+         * código del equipo, precio anual y precio de recisión.
+         * 
+         * Devuelve una tupla con los parámetros de salida del procedimiento.
+         * 
+        */
         public static Tuple<int, int> obtenerFutbolistasActivos(int codEquipo, int precioAnual, int precioRecision)
         {
             Tuple<int, int> result;
@@ -252,6 +308,14 @@ namespace futbol_CesarRaveloMartinez
             return result;
         }
 
+        /*
+         * Método encargado de ejecutar la función
+         * "fnTotalMeses" según el dni o nie
+         * especificada por parámetro.
+         * 
+         * Devuelve un entero con el resultado devuelto por la función.
+         * 
+        */
         public static int obtenerTotalMeses(string dnionie)
         {
             int result;
@@ -274,6 +338,9 @@ namespace futbol_CesarRaveloMartinez
 
             sqlConnection.Close();
 
+            // Si la función no devuelve nada, el objeto contenido
+            // en respuestaEscalar es de tipo DBNull;
+            // indicamos que el total es 0.
             if (respuestaEscalar is DBNull)
             {
                 result = 0;

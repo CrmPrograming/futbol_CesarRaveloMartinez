@@ -10,6 +10,20 @@ using System.Windows.Forms;
 
 namespace futbol_CesarRaveloMartinez
 {
+    /*
+     * Clase principal de la aplicación.
+     * Se encarga del formulario principal
+     * desde el cual el usuario puede realizar
+     * las distintas operaciones disponibles.
+     * 
+     * Además de ello, hace de intermediaria entre todos
+     * los demás formularios y la clase GestorConexion.
+     * 
+     * Todas las operaciones que afecten a la base de datos,
+     * tienen que ser solicitadas aquí ya que esta clase
+     * se comunicará con la clase GestorConexion.
+     * 
+    */
     public partial class FormMain : Form
     {
         private GestorConexion.TABLAS tablaSeleccionada = 0;
@@ -30,8 +44,9 @@ namespace futbol_CesarRaveloMartinez
             cbTabla.Items.Add("equipos");
             cbTabla.Items.Add("fubtbolistas");
             cbTabla.Items.Add("contratos");
-            cbTabla.SelectedIndex = 0;
+            cbTabla.SelectedIndex = 0; // Inicializamos el comboBox con la tabla Ligas
 
+            // Inicializamos el dataSet con los datos de las ligas
             dataSet = GestorConexion.poblarDataSet(GestorConexion.TABLAS.LIGAS);
             dataGridViewContenido.DataSource = dataSet.Tables[0];
             actualizarEstructuraGridView();
@@ -43,12 +58,19 @@ namespace futbol_CesarRaveloMartinez
             construirDataGrid();
         }
 
+        /*
+         * Método encargado de montar el DataGridView con los datos
+         * de la tabla actualmente seleccionada en el ComboBox.
+        */
         private void construirDataGrid()
         {
             tablaSeleccionada = 0;
             dataSet = null;
+            // Necesitamos quitar las columnas extras que añadimos, de lo contrario
+            // las columnas de combobox añadidas perdurarán.
             dataGridViewContenido.Columns.Clear();
 
+            // Establecemos la tabla seleccionada.
             switch (cbTabla.SelectedIndex)
             {
                 case 0:
@@ -65,12 +87,22 @@ namespace futbol_CesarRaveloMartinez
                     break;
             }
 
+            // Poblamos el dataSet y el dataGridView para la tabla indicada
             dataSet = GestorConexion.poblarDataSet(tablaSeleccionada);
             dataGridViewContenido.DataSource = dataSet.Tables[0];
+            // Ajustamos la estructura del DataGridView y sus columnas
             actualizarEstructuraGridView();
+            // Ajustamos el contador de total de registros
             lbTotalRegistros.Text = dataSet.Tables[0].Rows.Count.ToString();
         }
 
+        /*
+         * Método encargado de actualizar la estructura del DataGridView en base
+         * a la tabla actualmente seleccionada.
+         * 
+         * Cambia el texto de las cabeceras y allí donde sea necesario,
+         * añade una ComboBoxColumn.
+        */
         private void actualizarEstructuraGridView()
         {
             switch (tablaSeleccionada)
@@ -96,6 +128,10 @@ namespace futbol_CesarRaveloMartinez
                     cmbLigas.ValueMember = "codLiga";
                     cmbLigas.DataSource = dataSet.Tables[1];
                     dataGridViewContenido.Columns.Add(cmbLigas);
+
+                    // Deshabilitamos los campos relacionados con otras tablas
+                    // para que sólo se puedan modificar con el combobox correspondiente
+                    dataGridViewContenido.Columns[2].ReadOnly = true;
                     break;
                 case GestorConexion.TABLAS.FUTBOLISTAS:
                     dataGridViewContenido.Columns[0].HeaderText = "DNI o NIE";
@@ -138,6 +174,11 @@ namespace futbol_CesarRaveloMartinez
             }
         }
 
+        /*
+         * Método encargado de actualizar el Label con el total de registros
+         * contenidos en la tabla actualmente mostrada.
+         * 
+        */
         private void actualizarTotalRegistros()
         {
             lbTotalRegistros.Text = dataSet.Tables[0].Rows.Count.ToString();
@@ -151,6 +192,8 @@ namespace futbol_CesarRaveloMartinez
 
         private void btInsertar_Click(object sender, EventArgs e)
         {
+            // Según la tabla seleccionada, muestra el formulario
+            // de inserción asociado a ella.
             switch (tablaSeleccionada)
             {
                 case GestorConexion.TABLAS.LIGAS:
@@ -168,6 +211,20 @@ namespace futbol_CesarRaveloMartinez
             }
         }
 
+        /*
+         * Método encargado de actualizar los registros de la
+         * tabla actualmente mostrada en el DataGridView comunicándose
+         * con la clase GestorConexion mediante el método actualizarTabla;
+         * si hay nuevos registros, modificados o borrados, mandará el dataSet
+         * actualizado para sincronizar con la base de datos.
+         * 
+         * Además de ello, actualiza el label con el total de registros para
+         * mantener concordancia de acuerdo al nuevo total de registros.
+         * 
+         * Si la operación ha fallado, sea por un trigger o un dato no válido,
+         * se reconstruye el DataGridView a como estaba antes de realizar la operación.
+         * 
+        */
         public void actualizarRegistros()
         {
             if (GestorConexion.actualizarTabla(dataSet))
@@ -181,6 +238,8 @@ namespace futbol_CesarRaveloMartinez
 
         private void btBorrar_Click(object sender, EventArgs e)
         {
+            // Comprobamos antes de borrar un registro si realmente hay un único registro seleccionado
+            // y que éste no sea la fila de insertar nuevos registros.
             if (dataGridViewContenido.SelectedRows.Count == 1 && dataGridViewContenido.SelectedRows[0].Index != dataGridViewContenido.NewRowIndex)
             {
                 switch (tablaSeleccionada)
@@ -207,6 +266,8 @@ namespace futbol_CesarRaveloMartinez
 
         private void btModificar_Click(object sender, EventArgs e)
         {
+            // Comprobamos antes de modificar un registro si realmente hay un único registro seleccionado
+            // y que éste no sea la fila de insertar nuevos registros.
             if (dataGridViewContenido.SelectedRows.Count == 1 && dataGridViewContenido.SelectedRows[0].Index != dataGridViewContenido.NewRowIndex)
             {
                 switch (tablaSeleccionada)

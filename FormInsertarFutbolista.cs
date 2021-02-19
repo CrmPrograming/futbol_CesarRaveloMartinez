@@ -10,6 +10,11 @@ using System.Windows.Forms;
 
 namespace futbol_CesarRaveloMartinez
 {
+    /*
+     * Clase gestora de la operación de insertar
+     * los futbolistas mediante formulario.
+     * 
+    */
     public partial class FormInsertarFutbolista : Form
     {
         private DataSet dataSet;
@@ -33,6 +38,7 @@ namespace futbol_CesarRaveloMartinez
             string nombre = tbNombre.Text;
             string nacionalidad = tbNacionalidad.Text;
 
+            // Validamos todos los campos introducidos por el usuario
             if (validarDNINIE(codDNINIE) && validarNombre(nombre) && validarNacionalidad(nacionalidad))
             {
                 dataSet.Tables[0].Rows.Add(codDNINIE, nombre, nacionalidad);

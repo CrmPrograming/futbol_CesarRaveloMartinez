@@ -10,6 +10,11 @@ using System.Windows.Forms;
 
 namespace futbol_CesarRaveloMartinez
 {
+    /*
+     * Clase gestora de la operación de modificar
+     * los contratos mediante formulario.
+     * 
+    */
     public partial class FormModificarContratos : Form
     {
         private DataSet dataSet;
@@ -33,9 +38,12 @@ namespace futbol_CesarRaveloMartinez
             int i = 0;
             int pos = -1;            
 
+            // Creamos y rellenamos el ComboBox de equipos
             foreach (DataRow row in dataSet.Tables[1].Rows)
             {
                 equipoDictionary.Add(row[1].ToString(), row[0].ToString());
+                // Con este if marcaremos luego la posición del
+                // ComboBox en el item que coincida con el código de equipo dado
                 if (row[0].ToString().Equals(codEquipo))
                 {
                     pos = i;
@@ -51,11 +59,14 @@ namespace futbol_CesarRaveloMartinez
             cbCodEquipo.DataSource = new BindingSource(equipoDictionary, null);
             cbCodEquipo.SelectedIndex = pos;
 
+            // Creamos y rellenamos el ComboBox de futbolistas
             i = 0;
             pos = -1;
             foreach (DataRow row in dataSet.Tables[2].Rows)
             {
                 futbolistaDictionary.Add(row[1].ToString(), row[0].ToString());
+                // Con este if marcaremos luego la posición del
+                // ComboBox en el item que coincida con el código de dni o nie dado
                 if (row[0].ToString().Equals(coddnionie))
                 {
                     pos = i;
@@ -72,6 +83,8 @@ namespace futbol_CesarRaveloMartinez
 
             cbDNINIE.SelectedIndex = pos;
 
+            // Fijamos los valores de los DateTimePicker y los NumericUpDown con
+            // los valores previos del contrato especificado
             dtpInicio.Text = this.row.Cells[3].Value.ToString();
             dtpFin.Text = this.row.Cells[4].Value.ToString();
             nudPrecioAnual.Text = this.row.Cells[5].Value.ToString();
@@ -85,7 +98,7 @@ namespace futbol_CesarRaveloMartinez
 
         private void btActualizar_Click(object sender, EventArgs e)
         {
-            if (cbDNINIE.SelectedIndex > -1 && cbCodEquipo.SelectedIndex > -1)
+            if (combosSeleccionados() && fechasEscogidas())
             {
                 string codDNINIE = cbDNINIE.SelectedValue.ToString();
                 string codEquipo = cbCodEquipo.SelectedValue.ToString();
@@ -94,6 +107,9 @@ namespace futbol_CesarRaveloMartinez
                 int precioAnual = (int)nudPrecioAnual.Value;
                 int precioRecision = (int)nudPrecioRecision.Value;
                 
+                // Actualizamos los nuevos valores del contrato en la fila
+                // correspondiente del DataSet; row.Index es el índice
+                // de la fila seleccionada a modificar.
                 dataSet.Tables[0].Rows[row.Index][1] = codDNINIE;
                 dataSet.Tables[0].Rows[row.Index][2] = codEquipo;
                 dataSet.Tables[0].Rows[row.Index][3] = fechaInicio;
@@ -108,5 +124,26 @@ namespace futbol_CesarRaveloMartinez
                 MessageBox.Show("Debe obligatoriamente escoger el jugador y el equipo.");
             }
         }
+
+        /*
+         * Método encargado de comprobar que los
+         * dos combobox fueran seleccionados.
+         * 
+        */
+        private bool combosSeleccionados()
+        {
+            return (cbDNINIE.SelectedIndex > -1 && cbCodEquipo.SelectedIndex > -1);
+        }
+
+        /*
+         * Método encargado de comprobar que los
+         * dos DateTimePicker tengan valores asignados.
+         * 
+        */
+        private bool fechasEscogidas()
+        {
+            return (dtpInicio.Text.Length > 0 && dtpFin.Text.Length > 0);
+        }
+
     }
 }
